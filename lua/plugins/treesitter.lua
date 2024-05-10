@@ -1,9 +1,25 @@
 return {
-  "nvim-treesitter/nvim-treesitter",
-  build = ":TSUpdate",
-  opts = {
-    ensure_installed = {"lua", "javascript", "rust", "nix", "yaml", "python", "typescript", "tsx", "toml"},
-    highlight = { enable = true },
-    indent = { enable = true },
-  }
+	"nvim-treesitter/nvim-treesitter",
+	build = ":TSUpdate",
+	opts = {
+		ensure_installed = {
+			"lua",
+			"luadoc",
+			"html",
+			"javascript",
+			"markdown",
+			"rust",
+			"nix",
+			"yaml",
+			"python",
+			"typescript",
+			"tsx",
+			"toml",
+			"vim",
+			"vimdoc",
+		},
+		auto_install = true,
+		highlight = { enable = true },
+		indent = { enable = true },
+	},
 }
