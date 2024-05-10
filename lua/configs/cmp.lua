@@ -21,7 +21,10 @@ return function()
 			["<PageDown>"] = cmp.mapping.scroll_docs(4),
 			["<C-Space>"] = cmp.mapping.complete(),
 			["<Left>"] = cmp.mapping.abort(),
-			["<Esc>"] = cmp.mapping.abort(),
+			-- CMP offers recommendations for every erased character. nuh-uh
+			-- ["<BS>"] = cmp.mapping.abort(),
+			-- Makes me press Esc twice very often. nuh-uh
+			-- ["<Esc>"] = cmp.mapping.abort(),
 			["<Right>"] = cmp.mapping.confirm({ select = true }),
 			["<CR>"] = cmp.mapping.confirm({ select = true }),
 		}),

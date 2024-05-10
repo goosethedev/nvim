@@ -16,7 +16,7 @@ return function()
 	-- Setup keybinds
 	local builtin = require("telescope.builtin")
 
-	map("n", "<leader>.", builtin.find_files, { desc = "[.] Quick file open" })
+	map("n", "<leader>.", builtin.find_files, { desc = "Quick file open" })
 	map("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 	map("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
 	map("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
@@ -26,7 +26,7 @@ return function()
 	map("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 	map("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 	map("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-	map("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+	map("n", "<leader><leader>", builtin.buffers, { desc = "Find in open buffers" })
 
 	-- Slightly advanced example of overriding default behavior and theme
 	map("n", "<leader>/", function()
@@ -35,7 +35,7 @@ return function()
 			winblend = 10,
 			previewer = false,
 		}))
-	end, { desc = "[/] Fuzzily search in current buffer" })
+	end, { desc = "Fuzzily search in current buffer" })
 
 	-- It's also possible to pass additional configuration options.
 	--  See `:help telescope.builtin.live_grep()` for information about particular keys

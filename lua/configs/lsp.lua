@@ -2,9 +2,9 @@ local helper_map = require("helpers").keymapper
 
 return function()
 	--  When attaching an LSP to a buffer:
-  --  - Set up mappings for LSP functionalities
-  --  - Setup highlights on cursor standby
-  --  - Set up LSPs with additional capabilities
+	--  - Set up mappings for LSP functionalities
+	--  - Setup highlights on cursor standby
+	--  - Set up LSPs with additional capabilities
 	vim.api.nvim_create_autocmd("LspAttach", {
 		group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 		callback = function(event)
@@ -17,19 +17,19 @@ return function()
 
 			-- Jump to the definition (first declared)
 			--  To jump back, press <C-t>.
-			map("gd", telescope.lsp_definitions, "[G]oto [D]efinition")
+			map("<leader>ld", telescope.lsp_definitions, "Go to [D]efinition")
 
 			-- WARN: This is not Goto Definition, this is Goto Declaration.
-			map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+			map("<leader>lD", vim.lsp.buf.declaration, "Go to [D]eclaration")
 
 			-- Find references for the word under your cursor.
-			map("gr", telescope.lsp_references, "[G]oto [R]eferences")
+			map("<leader>lr", telescope.lsp_references, "Go to [R]eferences")
 
 			-- Jump to the implementation
-			map("gI", telescope.lsp_implementations, "[G]oto [I]mplementation")
+			map("<leader>lI", telescope.lsp_implementations, "Go to [I]mplementation")
 
 			-- Jump to the type's definition of a variable
-			map("<leader>lt", telescope.lsp_type_definitions, "[T]ype Definition")
+			map("<leader>lt", telescope.lsp_type_definitions, "Go to [T]ype Definition")
 
 			-- Fuzzy find all the symbols (vars, funcs, types, etc) in your current document
 			map("<leader>ls", telescope.lsp_document_symbols, "[S]ymbols in document")
@@ -38,8 +38,8 @@ return function()
 			map("<leader>lS", telescope.lsp_dynamic_workspace_symbols, "[S]ymbols in project")
 
 			-- Rename the variable under your cursor
-			map("<F2>", vim.lsp.buf.rename, "[R]ename variable")
-			map("<leader>lr", vim.lsp.buf.rename, "[R]ename symbol")
+			map("<F2>", vim.lsp.buf.rename, "Rename symbol")
+			map("<leader>ln", vim.lsp.buf.rename, "Re[N]ame symbol")
 
 			-- Execute a code action for error under the cursor
 			map("<leader>lc", vim.lsp.buf.code_action, "[C]ode Action")
@@ -99,7 +99,7 @@ return function()
 		-- "statix", -- Nix diagnostics (not available for now)
 	})
 	require("mason").setup()
-  require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+	require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 	-- Setup and attach capabilities to servers
 	require("mason-lspconfig").setup({
@@ -111,5 +111,4 @@ return function()
 			end,
 		},
 	})
-
 end
