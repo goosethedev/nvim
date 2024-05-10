@@ -39,7 +39,10 @@ return {
 
 	{ -- Status line
 		"nvim-lualine/lualine.nvim",
-		config = true,
+		opts = {
+			options = { globalstatus = true },
+		},
+		-- config = true,
 	},
 
 	{ -- Show pending keybinds
