@@ -19,6 +19,7 @@ return {
 			["<leader>f"] = { name = "[F]ile", _ = "which_key_ignore" },
 			["<leader>g"] = { name = "[G]ile", _ = "which_key_ignore" },
 			["<leader>l"] = { name = "[L]SP", _ = "which_key_ignore" },
+			["<leader>p"] = { name = "[P]ersistence", _ = "which_key_ignore" },
 			["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
 			["<leader>sg"] = { name = "[S]earch [G]it", _ = "which_key_ignore" },
 			["<leader>w"] = { name = "[W]indow", _ = "which_key_ignore" },

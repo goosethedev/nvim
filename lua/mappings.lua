@@ -101,3 +101,7 @@ map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
 map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
+
+-- Persistence mappings
+map("n", "<leader>pr", "<cmd>lua require('persistence').load()<cr>", { desc = "[P]ersistence [R]estore" })
+map("n", "<leader>ps", "<cmd>lua require('persistence').stop()<cr>", { desc = "[P]ersistence [S]top saving session" })
