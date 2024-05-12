@@ -100,7 +100,7 @@ local config_fn = function()
 	-- Install LSP and cmd tools with Mason
 	local ensure_installed = vim.tbl_keys(servers or {})
 	vim.list_extend(ensure_installed, additional_tools)
-	require("mason").setup()
+	-- require("mason").setup()
 	require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 	-- Setup and attach capabilities to servers
@@ -121,10 +121,34 @@ return {
 	config = config_fn,
 	dependencies = {
 		-- Manage LSP and cmd tools installation
-		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		"jay-babu/mason-null-ls.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
+
+		-- Configs for mason
+		{
+			"williamboman/mason.nvim",
+			opts = {
+				ui = {
+					icons = {
+						package_pending = " ",
+						package_installed = "󰄳 ",
+						package_uninstalled = " 󰚌",
+					},
+
+					keymaps = {
+						toggle_server_expand = "<CR>",
+						install_server = "i",
+						update_server = "u",
+						check_server_version = "c",
+						update_all_servers = "U",
+						check_outdated_servers = "C",
+						uninstall_server = "X",
+						cancel_installation = "<C-c>",
+					},
+				},
+			},
+		},
 
 		-- Neovim Lua namespace completion
 		{ "folke/neodev.nvim", opts = {} },
