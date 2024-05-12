@@ -53,20 +53,41 @@ return {
 
 			-- Document existing key chains
 			require("which-key").register({
+				["g"] = { name = "+goto" },
+				["gs"] = { name = "+surround" },
+				["z"] = { name = "+fold" },
+				["]"] = { name = "+next" },
+				["["] = { name = "+prev" },
+				["u"] = { name = "Undo last action" },
+				[";"] = { name = "Next f/t char search" },
+				[","] = { name = "Prev f/t char search" },
 				["<leader>d"] = { name = "[D]iagnostics", _ = "which_key_ignore" },
 				["<leader>f"] = { name = "[F]ile", _ = "which_key_ignore" },
+				["<leader>g"] = { name = "[G]ile", _ = "which_key_ignore" },
 				["<leader>l"] = { name = "[L]SP", _ = "which_key_ignore" },
 				["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
+				["<leader>sg"] = { name = "[S]earch [G]it", _ = "which_key_ignore" },
 				["<leader>w"] = { name = "[W]indow", _ = "which_key_ignore" },
 				["<leader>x"] = { name = "[X]tra / E[X]it", _ = "which_key_ignore" },
+				["<leader>xi"] = { name = "Config [I]nfo", _ = "which_key_ignore" },
 			})
 		end,
 	},
 
 	{ -- Highlight todo, notes, etc in comments
 		"folke/todo-comments.nvim",
+		cmd = { "TodoTrouble", "TodoTelescope" },
 		event = "VimEnter",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = { signs = false },
+    -- stylua: ignore
+    keys = {
+      { "]t", function() require("todo-comments").jump_next() end, desc = "Next Todo Comment" },
+      { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous Todo Comment" },
+      { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
+      { "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
+      { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
+      { "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme" },
+    },
 	},
 }

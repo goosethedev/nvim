@@ -2,10 +2,10 @@
 local map = require("helpers").keymapper
 
 -- Basics
-map("n", "U", "<C-r>") -- Redo on U
+map("n", "U", "<C-r>", { desc = "Redo last action" }) -- Redo on U
 map("n", "<esc>", "<cmd>noh<CR>") -- Clear search results
-map("n", "<PageUp>", "<C-u>") -- Half page up
-map("n", "<PageDown>", "<C-d>") -- Half page down
+map("n", "<PageUp>", "<C-u>", { desc = "Half page up" }) -- Half page up
+map("n", "<PageDown>", "<C-d>", { desc = "Half page down" }) -- Half page down
 
 -- Better indenting
 map("v", "<", "<gv")
@@ -51,10 +51,11 @@ map("n", "<leader>xc", "<cmd>qa<CR>", { desc = "Exit Neovim" })
 map("n", "<leader>xC", "<cmd>qa!<CR>", { desc = "Exit Neovim without saving" })
 
 -- Extra tools
-map("n", "<leader>xl", "<cmd>Lazy<cr>", { desc = "[L]azy menu" })
-map("n", "<leader>xm", "<cmd>Mason<cr>", { desc = "[M]ason menu" })
-map("n", "<leader>xn", "<cmd>NullLsInfo<cr>", { desc = "[N]ullLs info" })
-map("n", "<leader>xt", "<cmd>TSInstallInfo<cr>", { desc = "[T]reesitter info" })
+map("n", "<leader>xil", "<cmd>LspInfo<cr>", { desc = "[L]SP info" })
+map("n", "<leader>xiz", "<cmd>Lazy<cr>", { desc = "La[z]y menu" })
+map("n", "<leader>xim", "<cmd>Mason<cr>", { desc = "[M]ason menu" })
+map("n", "<leader>xin", "<cmd>NullLsInfo<cr>", { desc = "[N]ullLs info" })
+map("n", "<leader>xit", "<cmd>TSInstallInfo<cr>", { desc = "[T]reesitter info" })
 
 -- Window management
 map("n", "<leader>wn", "<C-w>h", { desc = "Focus window left" })

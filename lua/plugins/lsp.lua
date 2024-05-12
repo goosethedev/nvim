@@ -1,11 +1,12 @@
 return {
 	"neovim/nvim-lspconfig",
+	-- event = "BufEnter",
 	config = require("configs.lsp"),
 	dependencies = {
 		-- Manage LSP and cmd tools installation
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
-    "jay-babu/mason-null-ls.nvim",
+		"jay-babu/mason-null-ls.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 		-- Neovim Lua namespace completion

@@ -13,7 +13,23 @@ return {
 
 	{ -- Cmd tools as unified LSP
 		"nvimtools/none-ls.nvim",
+		event = "BufEnter",
 		config = require("configs.none-ls"),
+	},
+
+	{ -- Search/replace in multiple files
+		"nvim-pack/nvim-spectre",
+		build = false,
+		cmd = "Spectre",
+		opts = { open_cmd = "noswapfile vnew" },
+    -- stylua: ignore
+    keys = {
+      {
+        "<leader>ss",
+        function() require("spectre").open() end,
+        desc = "[S]pectre: Replace in Files"
+      },
+    },
 	},
 
 	{ -- Autoformat

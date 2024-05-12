@@ -17,7 +17,7 @@ o.cursorline = true -- Highlight cursor's current line
 o.cursorlineopt = "number" -- But only the line number, not whole line
 
 -- Statusline
-o.laststatus = 3 -- Only one global statusline
+-- o.laststatus = 3 -- Only one global statusline (Lualine takes care. DON'T uncomment)
 o.showmode = false -- Don't show -- INSERT --
 
 -- Indenting
