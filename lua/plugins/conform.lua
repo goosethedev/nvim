@@ -1,14 +1,13 @@
 -- Better formatting
 return {
 	"stevearc/conform.nvim",
-	lazy = false,
+  event = "BufWritePre",
 	keys = {
 		{
 			"<leader>lf",
 			function()
-				require("conform").format({ async = true, lsp_fallback = true })
+				require("conform").format({ async = true, timeout_ms = 500, lsp_fallback = true })
 			end,
-			mode = "",
 			desc = "LSP: [F]ormat buffer",
 		},
 	},
@@ -30,7 +29,9 @@ return {
 			--
 			-- You can use a sub-list to tell conform to run *until* a formatter
 			-- is found.
-			-- javascript = { { "prettierd", "prettier" } },
+			javascript = { { "prettierd", "prettier" } },
+			html = { { "prettierd", "prettier" } },
+			toml = { "taplo" },
 		},
 	},
 }

@@ -4,7 +4,16 @@ return {
 	-- "tpope/vim-sleuth",
 
 	-- "gc" to comment visual regions/lines
-	{ "numToStr/Comment.nvim", opts = {} },
+	{
+		"numToStr/Comment.nvim",
+		config = function()
+      require("Comment").setup()
+
+			-- Set comment characters for unknown files
+			local ft = require("Comment.ft")
+			ft.set("kdl", "//%s")
+		end,
+	},
 
 	{ -- Dashboard at startup
 		"goolord/alpha-nvim",

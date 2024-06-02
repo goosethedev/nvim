@@ -4,15 +4,27 @@ return {
 	event = "BufEnter",
 	config = function()
 		local null_ls = require("null-ls")
+
+		local fmt = null_ls.builtins.formatting
+		local ca = null_ls.builtins.code_actions
+		local diag = null_ls.builtins.diagnostics
+
 		null_ls.setup({
 			sources = {
 				-- Lua
-				null_ls.builtins.formatting.stylua,
+				fmt.stylua,
 
 				-- Nix
-				null_ls.builtins.formatting.alejandra,
-				null_ls.builtins.code_actions.statix,
-				null_ls.builtins.diagnostics.statix,
+				fmt.alejandra,
+				ca.statix,
+				diag.statix,
+
+				-- Rust
+				fmt.leptosfmt,
+
+				-- Web
+				fmt.prettierd, -- prettier but better?
+				-- fmt.prettier,
 			},
 		})
 	end,

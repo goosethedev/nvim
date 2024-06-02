@@ -56,6 +56,7 @@ map("n", "<leader>xiz", "<cmd>Lazy<cr>", { desc = "La[z]y menu" })
 map("n", "<leader>xim", "<cmd>Mason<cr>", { desc = "[M]ason menu" })
 map("n", "<leader>xin", "<cmd>NullLsInfo<cr>", { desc = "[N]ullLs info" })
 map("n", "<leader>xit", "<cmd>TSInstallInfo<cr>", { desc = "[T]reesitter info" })
+map("n", "<leader>xic", "<cmd>ConformInfo<cr>", { desc = "[C]onform info" })
 
 -- Window management
 map("n", "<leader>wn", "<C-w>h", { desc = "Focus window left" })

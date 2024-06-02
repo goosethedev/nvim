@@ -7,6 +7,7 @@
 --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
 --  - settings (table): Override the default settings passed when initializing the server.
 local servers = {
+  emmet_language_server = {},
 	lua_ls = {
 		settings = {
 			Lua = {
@@ -19,7 +20,22 @@ local servers = {
 		},
 	},
 	pyright = {},
-	rust_analyzer = {},
+	rust_analyzer = {
+		settings = {
+			["rust-analyzer"] = {
+				procMacro = {
+					ignored = {
+						leptos_macro = {
+							-- "component", -- optional
+							"server",
+						},
+					},
+				},
+			},
+		},
+	},
+	taplo = {}, -- TOML files
+  tailwindcss = {},
 	tsserver = {},
 }
 
@@ -28,6 +44,7 @@ local additional_tools = {
 	"stylua", -- Lua code formatting
 	-- "alejandra", -- Nix formatting (not available for now)
 	-- "statix", -- Nix diagnostics (not available for now)
+	"prettierd",
 }
 
 -- Set your LSP related mappings here
