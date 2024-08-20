@@ -42,11 +42,9 @@ map("v", "<C-e>", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
 map("v", "<C-u>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
 
 -- General Management
-map("n", "<leader>xs", "<cmd>w<CR>", { desc = "Save current buffer" })
-map("n", "<leader>xS", "<cmd>wa<CR>", { desc = "Save all buffers" })
+map("n", "<leader>fs", "<cmd>w<CR>", { desc = "Save current buffer" })
+map("n", "<leader>fS", "<cmd>wa<CR>", { desc = "Save all buffers" })
 -- https://stackoverflow.com/questions/1444322/how-can-i-close-a-buffer-without-closing-the-window
-map("n", "<leader>xk", "<cmd>bp<bar>sp<bar>bn<bar>bd<CR>", { desc = "Close buffer" })
-map("n", "<leader>xK", "<cmd>bdel!<CR>", { desc = "Close buffer without saving" })
 map("n", "<leader>xc", "<cmd>qa<CR>", { desc = "Exit Neovim" })
 map("n", "<leader>xC", "<cmd>qa!<CR>", { desc = "Exit Neovim without saving" })
 
