@@ -7,7 +7,10 @@
 --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
 --  - settings (table): Override the default settings passed when initializing the server.
 local servers = {
-  emmet_language_server = {},
+	astro = {},
+	cssls = {},
+	emmet_language_server = {},
+	html = {},
 	lua_ls = {
 		settings = {
 			Lua = {
@@ -35,7 +38,15 @@ local servers = {
 		},
 	},
 	taplo = {}, -- TOML files
-  tailwindcss = {},
+	tailwindcss = {
+		settings = {
+			emmetCompletions = true,
+		},
+		init_options = {
+			userLanguages = { pug = "html" },
+		},
+		filetypes = { "html", "pug", "css", "javascriptreact", "typescriptreact", "astro" },
+	},
 	tsserver = {},
 }
 
@@ -168,7 +179,13 @@ return {
 		},
 
 		-- Neovim Lua namespace completion
-		{ "folke/neodev.nvim", opts = {} },
+		{
+			"folke/neodev.nvim",
+			opts = {
+				-- Don't overload workspace
+				library = { plugins = false },
+			},
+		},
 
 		-- Useful status updates for LSP
 		{ "j-hui/fidget.nvim", opts = {} },
