@@ -3,6 +3,12 @@ return {
 	-- Disabled. Messes with tabs and spaces
 	-- "tpope/vim-sleuth",
 
+	-- Tmux integration
+	{
+		"christoomey/vim-tmux-navigator",
+		lazy = false,
+	},
+
 	{ -- Close buffers
 		"Asheq/close-buffers.vim",
 		keys = {

@@ -26,6 +26,12 @@ map("n", "<Down>", "g<Down>")
 map("i", "<Up>", "<C-o>g<Up>")
 map("i", "<Down>", "<C-o>g<Down>")
 
+-- Tmux window navigation
+map("n", "<A-u>", "<cmd>TmuxNavigateUp<CR>", { desc = "Focus window up" })
+map("n", "<A-e>", "<cmd>TmuxNavigateDown<CR>", { desc = "Focus window down" })
+map("n", "<A-n>", "<cmd>TmuxNavigateLeft<CR>", { desc = "Focus window left" })
+map("n", "<A-i>", "<cmd>TmuxNavigateRight<CR>", { desc = "Focus window right" })
+
 -- Prev/next buffer navigation
 map("n", "<leader>>", "<cmd>bn<CR>", { desc = "Go to next buffer" })
 map("n", "<leader><", "<cmd>bp<CR>", { desc = "Go to prev buffer" })
