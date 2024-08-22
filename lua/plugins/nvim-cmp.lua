@@ -4,11 +4,14 @@ local mappings_fn = function(mapping)
 		["<PageUp>"] = mapping.scroll_docs(-4),
 		["<PageDown>"] = mapping.scroll_docs(4),
 		["<C-Space>"] = mapping.complete(),
-		["<Left>"] = mapping.abort(),
-		["<Right>"] = mapping.confirm({ select = true }),
 		["<CR>"] = mapping.confirm({ select = true }),
+		-- Too annoying when trying to move
+		-- ["<Left>"] = mapping.abort(),
+		-- ["<Right>"] = mapping.confirm({ select = true }),
+		--
 		-- CMP offers recommendations for every erased character. nuh-uh
 		-- ["<BS>"] = mapping.abort(),
+		--
 		-- Makes me press Esc twice very often. nuh-uh
 		-- ["<Esc>"] = mapping.abort(),
 	}

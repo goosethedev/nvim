@@ -40,12 +40,12 @@ map("n", "<leader>fp", "<cmd>bn<CR>", { desc = "Go to [P]rev buffer" })
 map("n", "<leader>ff", "<cmd>e #<CR>", { desc = "Go to last buffer" })
 
 -- Move lines up/down
-map("n", "<C-e>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
-map("n", "<C-u>", "<cmd>m .-2<cr>==", { desc = "Move Up" })
-map("i", "<C-e>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
-map("i", "<C-u>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
-map("v", "<C-e>", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
-map("v", "<C-u>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
+map("n", "<C-Down>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
+map("n", "<C-Up>", "<cmd>m .-2<cr>==", { desc = "Move Up" })
+map("i", "<C-Down>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
+map("i", "<C-Up>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
+map("v", "<C-Down>", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
+map("v", "<C-Up>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
 
 -- General Management
 map("n", "<leader>fs", "<cmd>w<CR>", { desc = "Save current buffer" })
@@ -76,6 +76,8 @@ map("n", "<leader>ww", "<C-w>p", { desc = "Focus next window" })
 
 map("n", "<leader>ws", "<C-w>s", { desc = "Split window horizontal" })
 map("n", "<leader>wv", "<C-w>v", { desc = "Split window vertical" })
+map("n", "<leader>w,", "<C-w>s", { desc = "Split window horizontal" })
+map("n", "<leader>w.", "<C-w>v", { desc = "Split window vertical" })
 map("n", "<leader>wm", "<C-w><bar><C-w>_", { desc = "Maximize window" })
 map("n", "<leader>wM", "<C-w>=", { desc = "Restore windows size" })
 map("n", "<leader>wc", "<C-w>c", { desc = "Close window" })

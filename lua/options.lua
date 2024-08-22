@@ -46,6 +46,7 @@ o.list = false -- Don't show whitespace chars by default. They're annoying.
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Misc
+o.wrap = true -- Text wrap
 o.clipboard = "unnamedplus" -- Use system clipboard
 o.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 o.formatoptions = "jcroqlnt" -- Default: tcqj - See :h formatoptions
@@ -55,7 +56,7 @@ o.termguicolors = true -- 24-bit colors
 o.timeoutlen = 400 -- Time to show Which key
 opt.undofile = true -- Save undo changes in ~/.local/state/nvim/undo
 opt.undolevels = 10000 -- Amount of undo actions to save
+opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20" -- Change cursor for each mode
 -- o.updatetime = 300 -- Time (ms) after standby to write swap file
-o.wrap = true -- Text wrap
 opt.shortmess:append({ W = true, I = true, c = true, C = true })
 opt.whichwrap:append("<>[]") -- Go to prev/next line on start/end is reached

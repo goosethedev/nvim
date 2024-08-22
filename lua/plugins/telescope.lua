@@ -3,7 +3,7 @@ local mappings_fn = function()
 	local map = require("helpers").keymapper
 	local builtin = require("telescope.builtin")
 
-	map("n", "<leader>.", builtin.find_files, { desc = "Quick file open" })
+	map("n", "<leader>,", builtin.find_files, { desc = "Quick file open" })
 	map("n", "<leader>:", builtin.command_history, { desc = "Search Command History" })
 	map("n", "<leader>/", builtin.live_grep, { desc = "Search by Grep globally" })
 	map("n", "<leader>sB", builtin.builtin, { desc = "[S]earch Telescope [B]uiltins" })

@@ -28,6 +28,14 @@ return {
 			-- Set comment characters for unknown files
 			local ft = require("Comment.ft")
 			ft.set("kdl", "//%s")
+
+			-- Custom mapping to <leader> + ';'
+			vim.keymap.set(
+				"n",
+				"<leader>;",
+				require("Comment.api").toggle.linewise.current,
+				{ desc = "Toggle comment linewise" }
+			)
 		end,
 		dependencies = {
 			{
