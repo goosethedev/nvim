@@ -47,7 +47,7 @@ local servers = {
 		},
 		filetypes = { "html", "pug", "css", "javascriptreact", "typescriptreact", "astro" },
 	},
-	tsserver = {},
+	ts_ls = {}, -- alias: typescript-language-server
 }
 
 -- Additional cmd tools from none-ls to install with Mason Tool Installer

@@ -109,6 +109,12 @@ map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
+-- Terminal mappings
+map("i", "<C-'>", "<cmd>ToggleTerm direction=horizontal name=default<CR>", { desc = "Default terminal" })
+map("n", "<C-'>", "<cmd>ToggleTerm direction=horizontal name=default<CR>", { desc = "Default terminal" })
+map("n", "<leader>tt", "<cmd>ToggleTerm direction=horizontal name=default<CR>", { desc = "Default terminal" })
+map("n", "<leader>to", "<cmd>TermSelect<CR>", { desc = "Select terminal" })
+
 -- Persistence mappings
 map("n", "<leader>pr", "<cmd>lua require('persistence').load()<cr>", { desc = "[P]ersistence [R]estore" })
 map("n", "<leader>ps", "<cmd>lua require('persistence').stop()<cr>", { desc = "[P]ersistence [S]top saving session" })
