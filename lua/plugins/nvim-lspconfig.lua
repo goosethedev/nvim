@@ -8,10 +8,11 @@
 --  - settings (table): Override the default settings passed when initializing the server.
 
 -- LSP server configurations
-local servers = {
+local lsp_servers = {
 	astro = {},
 	cssls = {},
 	emmet_language_server = {},
+	fish_lsp = {}, -- Not working for now
 	html = {},
 	lua_ls = {
 		settings = {
@@ -53,7 +54,20 @@ local servers = {
 }
 
 -- Additional cmd tools from none-ls to install with Mason Tool Installer
-local additional_tools = {
+local mason_tools = {
+	-- For LSP servers above
+	"astro",
+	"cssls",
+	"emmet_language_server",
+	"html",
+	"lua_ls",
+	"pyright",
+	"rust_analyzer",
+	"taplo",
+	"tailwindcss",
+	"ts_ls",
+
+	-- Additional
 	"stylua", -- Lua code formatting
 	-- "alejandra", -- Nix formatting (not available for now)
 	-- "statix", -- Nix diagnostics (not available for now)
@@ -128,16 +142,13 @@ local config_fn = function()
 	capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 	-- Install LSP and cmd tools with Mason
-	local ensure_installed = vim.tbl_keys(servers or {})
-	vim.list_extend(ensure_installed, additional_tools)
-	-- require("mason").setup()
-	require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+	require("mason-tool-installer").setup({ ensure_installed = mason_tools })
 
 	-- Setup and attach capabilities to servers
 	require("mason-lspconfig").setup({
 		handlers = {
 			function(server_name)
-				local server = servers[server_name] or {}
+				local server = lsp_servers[server_name] or {}
 				server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 				require("lspconfig")[server_name].setup(server)
 			end,

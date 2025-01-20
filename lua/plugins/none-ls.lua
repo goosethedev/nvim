@@ -11,6 +11,10 @@ return {
 
 		null_ls.setup({
 			sources = {
+				-- Fish
+				diag.fish,
+				fmt.fish_indent,
+
 				-- Lua
 				fmt.stylua,
 
