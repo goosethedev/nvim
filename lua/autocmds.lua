@@ -3,7 +3,7 @@ local map = require("helpers").keymapper
 -- Autogroup creation helpers
 local autocmd = vim.api.nvim_create_autocmd
 
-local function augroup(name)
+local augroup = function(name)
 	return vim.api.nvim_create_augroup("shima_" .. name, { clear = true })
 end
 
