@@ -24,7 +24,7 @@ return {
 				diag.statix,
 
 				-- Rust
-				fmt.leptosfmt,
+				-- fmt.leptosfmt, -- not needed anymore
 
 				-- Web
 				fmt.prettierd, -- prettier but better?

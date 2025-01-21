@@ -1,12 +1,14 @@
 local map = require("helpers").keymapper
 
--- Autogroup creation helper
+-- Autogroup creation helpers
+local autocmd = vim.api.nvim_create_autocmd
+
 local function augroup(name)
 	return vim.api.nvim_create_augroup("shima_" .. name, { clear = true })
 end
 
 -- Check if we need to reload the file when it changed
-vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 	desc = "Check if file needs to be reloaded",
 	group = augroup("checktime"),
 	callback = function()
@@ -17,7 +19,7 @@ vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 })
 
 -- Highlight on yank
-vim.api.nvim_create_autocmd("TextYankPost", {
+autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = augroup("highlight_yank"),
 	callback = function()
@@ -25,8 +27,22 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+-- Remove annoying format options for comments
+-- https://www.reddit.com/r/neovim/comments/10keuug/comment/j5qa6a6
+autocmd("BufEnter", {
+	group = augroup("FormatOptions"),
+	pattern = "*",
+	desc = "Set buffer local formatoptions.",
+	callback = function()
+		vim.opt_local.formatoptions:remove({
+			"r", -- Automatically insert the current comment leader after hitting <Enter> in Insert mode.
+			"o", -- Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode.
+		})
+	end,
+})
+
 -- Resize splits if window got resized
-vim.api.nvim_create_autocmd({ "VimResized" }, {
+autocmd({ "VimResized" }, {
 	desc = "Resize splits if window got resized",
 	group = augroup("resize_splits"),
 	callback = function()
@@ -37,7 +53,7 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 })
 
 -- Go to last loc when opening a buffer
-vim.api.nvim_create_autocmd("BufReadPost", {
+autocmd("BufReadPost", {
 	desc = "Go to last loc when opening a buffer",
 	group = augroup("last_loc"),
 	callback = function(event)
@@ -56,7 +72,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 -- Close some filetypes with <q>
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
 	desc = "Close some filetypes with <q>",
 	group = augroup("close_with_q"),
 	pattern = {
@@ -81,7 +97,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Close Telescope windows with <Esc>
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
 	desc = "Close Telescope with <Esc>",
 	group = augroup("close_telescope_with_esc"),
 	pattern = { "TelescopePrompt" },
@@ -92,7 +108,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Make it easier to close man-files when opened inline
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
 	desc = "Make it easier to close man-files when opened inline",
 	group = augroup("man_unlisted"),
 	pattern = { "man" },
@@ -102,7 +118,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Wrap and check for spell in text filetypes
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
 	desc = "Wrap and check for spell in text filetypes",
 	group = augroup("wrap_spell"),
 	pattern = { "gitcommit", "markdown" },
@@ -113,7 +129,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Fix conceallevel for json files
-vim.api.nvim_create_autocmd({ "FileType" }, {
+autocmd({ "FileType" }, {
 	desc = "Fix conceallevel for json files",
 	group = augroup("json_conceal"),
 	pattern = { "json", "jsonc", "json5" },
@@ -123,7 +139,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 -- Auto create dir when saving a file, in case some intermediate directory does not exist
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+autocmd({ "BufWritePre" }, {
 	desc = "Create intermediate directories if don't exist",
 	group = augroup("auto_create_dir"),
 	callback = function(event)

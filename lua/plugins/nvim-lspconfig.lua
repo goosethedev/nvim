@@ -29,14 +29,23 @@ local lsp_servers = {
 	rust_analyzer = {
 		settings = {
 			["rust-analyzer"] = {
-				procMacro = {
-					ignored = {
-						leptos_macro = {
-							-- "component", -- optional
-							"server",
-						},
-					},
+				cargo = {
+					features = "all",
 				},
+				check = {
+					features = "all",
+				},
+				diagnostics = {
+					disabled = { "inactive-code" },
+				},
+				-- procMacro = {
+				-- 	ignored = {
+				-- 		leptos_macro = {
+				-- 			-- "component", -- optional
+				-- 			"server",
+				-- 		},
+				-- 	},
+				-- },
 			},
 		},
 	},
@@ -102,6 +111,12 @@ local mappings_fn = function(map)
 	-- Rename the variable under your cursor
 	map("<F2>", vim.lsp.buf.rename, "Rename symbol")
 	map("<leader>ln", vim.lsp.buf.rename, "Re[N]ame symbol")
+
+	-- Show line diagnostics
+	map("<leader>ll", vim.diagnostic.open_float, "[L]ine Diagnostics")
+
+	-- Inspect object under cursor
+	map("<leader>lu", vim.show_pos, "Inspect [U]nder cursor")
 
 	-- Execute a code action for error under the cursor
 	map("<leader>lc", vim.lsp.buf.code_action, "[C]ode Action")

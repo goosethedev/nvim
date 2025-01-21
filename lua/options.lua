@@ -49,7 +49,7 @@ opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 o.wrap = true -- Text wrap
 o.clipboard = "unnamedplus" -- Use system clipboard
 o.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
-o.formatoptions = "jcroqlnt" -- Default: tcqj - See :h formatoptions
+o.formatoptions = "jcqlnt" -- Default: tcqj - See :h formatoptions
 o.mouse = "a" -- Enable mouse
 o.scrolloff = 10 -- Keep 10 lines up and down when scrolling
 o.termguicolors = true -- 24-bit colors

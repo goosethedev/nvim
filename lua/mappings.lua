@@ -7,6 +7,10 @@ map("n", "<esc>", "<cmd>noh<CR>") -- Clear search results
 map("n", "<PageUp>", "<C-u>", { desc = "Half page up" }) -- Half page up
 map("n", "<PageDown>", "<C-d>", { desc = "Half page down" }) -- Half page down
 
+-- Comment next line on Insert mode when Shift+Return
+-- Nope, doesn't work and can't be done - https://stackoverflow.com/a/16360063
+-- map("i", "<S-Return>", "<Esc>gccA", { desc = "Auto comment next line" })
+
 -- Better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
@@ -96,10 +100,6 @@ local diagnostic_goto = function(next, severity)
 		go({ severity = severity })
 	end
 end
--- Show line diagnostics
-map("n", "<leader>dl", vim.diagnostic.open_float, { desc = "[L]ine Diagnostics" })
--- Highlights under cursor
-map("n", "<leader>di", vim.show_pos, { desc = "[I]nspect under cursor" })
 
 -- Navigate diagnostics
 map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
