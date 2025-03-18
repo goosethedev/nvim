@@ -4,6 +4,7 @@ local map = require("helpers").keymapper
 -- Basics
 map("n", "U", "<C-r>", { desc = "Redo last action" }) -- Redo on U
 map("n", "<esc>", "<cmd>noh<CR>") -- Clear search results
+map("i", "<C-h>", "<C-w>", { desc = "Delete full word" }) -- Ctrl+Backspace delete word
 map("n", "<PageUp>", "<C-u>", { desc = "Half page up" }) -- Half page up
 map("n", "<PageDown>", "<C-d>", { desc = "Half page down" }) -- Half page down
 
