@@ -7,6 +7,13 @@ local augroup = function(name)
 	return vim.api.nvim_create_augroup("shima_" .. name, { clear = true })
 end
 
+-- Run Telescope file search on startup
+autocmd("VimEnter", {
+	callback = function()
+		require("telescope.builtin").find_files()
+	end,
+})
+
 -- Check if we need to reload the file when it changed
 autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 	desc = "Check if file needs to be reloaded",
@@ -29,17 +36,17 @@ autocmd("TextYankPost", {
 
 -- Remove annoying format options for comments
 -- https://www.reddit.com/r/neovim/comments/10keuug/comment/j5qa6a6
-autocmd("BufEnter", {
-	group = augroup("FormatOptions"),
-	pattern = "*",
-	desc = "Set buffer local formatoptions.",
-	callback = function()
-		vim.opt_local.formatoptions:remove({
-			"r", -- Automatically insert the current comment leader after hitting <Enter> in Insert mode.
-			"o", -- Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode.
-		})
-	end,
-})
+-- autocmd("BufEnter", {
+-- 	group = augroup("FormatOptions"),
+-- 	pattern = "*",
+-- 	desc = "Set buffer local formatoptions.",
+-- 	callback = function()
+-- 		vim.opt_local.formatoptions:remove({
+-- 			"r", -- Automatically insert the current comment leader after hitting <Enter> in Insert mode.
+-- 			"o", -- Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode.
+-- 		})
+-- 	end,
+-- })
 
 -- Resize splits if window got resized
 autocmd({ "VimResized" }, {

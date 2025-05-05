@@ -10,6 +10,7 @@ return {
 	},
 
 	{ -- Close buffers
+		-- TODO: closing a buffer sometimes closes the whole Neovim instance
 		"Asheq/close-buffers.vim",
 		keys = {
 			{ "<leader>fd", "<cmd>Bdelete this<cr>", desc = "Close current buffer" },
@@ -51,6 +52,7 @@ return {
 			"nvim-tree/nvim-web-devicons",
 			"nvim-lua/plenary.nvim",
 		},
+		enabled = false,
 		config = function()
 			require("alpha").setup(require("alpha.themes.theta").config)
 		end,

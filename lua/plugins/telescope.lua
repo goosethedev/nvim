@@ -3,9 +3,13 @@ local mappings_fn = function()
 	local map = require("helpers").keymapper
 	local builtin = require("telescope.builtin")
 
-	map("n", "<leader>,", builtin.find_files, { desc = "Quick file open" })
-	map("n", "<leader>:", builtin.command_history, { desc = "Search Command History" })
-	map("n", "<leader>/", builtin.live_grep, { desc = "Search by Grep globally" })
+  -- New keymaps
+	map("n", "<A-o>", builtin.find_files, { desc = "Quick file open" })
+
+	-- map("n", "<leader>,", builtin.find_files, { desc = "Quick file open" })
+	map("n", "<A-;>", builtin.commands, { desc = "[S]earch [C]ommands available" })
+	-- map("n", "<leader>:", builtin.command_history, { desc = "Search Command History" })
+	map("n", "<leader>ss", builtin.live_grep, { desc = "Search by Grep globally" })
 	map("n", "<leader>sB", builtin.builtin, { desc = "[S]earch Telescope [B]uiltins" })
 	map("n", "<leader>sc", builtin.commands, { desc = "[S]earch [C]ommands available" })
 	map("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
@@ -37,7 +41,7 @@ local mappings_fn = function()
 	end, { desc = "Find opened buffer" })
 
 	-- Search in current buffer
-	map("n", "<leader>sB", function()
+	map("n", "<leader>sb", function()
 		-- You can pass additional configuration to Telescope to change the theme, layout, etc.
 		builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
 			winblend = 10,

@@ -3,7 +3,8 @@ return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v3.x",
 	keys = {
-		{ "<leader>ft", ":Neotree filesystem toggle right<CR>", desc = "File [T]ree", silent = true },
+		-- { "<leader>ft", ":Neotree filesystem toggle right<CR>", desc = "File [T]ree", silent = true },
+		{ "<A-'>", ":Neotree filesystem toggle right<CR>", desc = "File [T]ree", silent = true },
 	},
 	dependencies = {
 		"nvim-lua/plenary.nvim",

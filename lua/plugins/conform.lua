@@ -1,7 +1,8 @@
 -- Better formatting
 return {
 	"stevearc/conform.nvim",
-  event = "BufWritePre",
+	enabled = false,
+	event = "BufWritePre",
 	keys = {
 		{
 			"<leader>lf",

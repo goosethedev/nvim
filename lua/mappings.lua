@@ -1,11 +1,12 @@
 -- Key mapper function, opts are optional
 local map = require("helpers").keymapper
+local all_modes = { "n", "i", "v" }
 
 -- Basics
 map("n", "U", "<C-r>", { desc = "Redo last action" }) -- Redo on U
 map("n", "<esc>", "<cmd>noh<CR>") -- Clear search results
 map("i", "<C-h>", "<C-w>", { desc = "Delete full word" }) -- Ctrl+Backspace delete word
-map("n", "<PageUp>", "<C-u>", { desc = "Half page up" }) -- Half page up
+map("n", "<PageUp>", "<C-u>", { desc = "half page up" }) -- Half page up
 map("n", "<PageDown>", "<C-d>", { desc = "Half page down" }) -- Half page down
 
 -- Comment next line on Insert mode when Shift+Return
@@ -31,33 +32,41 @@ map("n", "<Down>", "g<Down>")
 map("i", "<Up>", "<C-o>g<Up>")
 map("i", "<Down>", "<C-o>g<Down>")
 
--- Tmux window navigation
-map("n", "<A-u>", "<cmd>TmuxNavigateUp<CR>", { desc = "Focus window up" })
-map("n", "<A-e>", "<cmd>TmuxNavigateDown<CR>", { desc = "Focus window down" })
-map("n", "<A-n>", "<cmd>TmuxNavigateLeft<CR>", { desc = "Focus window left" })
-map("n", "<A-i>", "<cmd>TmuxNavigateRight<CR>", { desc = "Focus window right" })
+-- Window management
+map(all_modes, "<A-n>", "<C-w>h", { desc = "Focus window left" })
+map(all_modes, "<A-u>", "<C-w>k", { desc = "Focus window up" })
+map(all_modes, "<A-e>", "<C-w>j", { desc = "Focus window down" })
+map(all_modes, "<A-i>", "<C-w>l", { desc = "Focus window right" })
+map(all_modes, "<A-N>", "<C-w>H", { desc = "Move window left" })
+map(all_modes, "<A-U>", "<C-w>K", { desc = "Move window up" })
+map(all_modes, "<A-E>", "<C-w>J", { desc = "Move window down" })
+map(all_modes, "<A-I>", "<C-w>L", { desc = "Move window right" })
+
+map(all_modes, "<A-,>", "<C-w>s", { desc = "Split window horizontal" })
+map(all_modes, "<A-.>", "<C-w>v", { desc = "Split window vertical" })
+map(all_modes, "<A-m>", "<C-w><bar><C-w>_", { desc = "Maximize window" })
+map(all_modes, "<A-M>", "<C-w>=", { desc = "Restore windows size" })
+map(all_modes, "<A-w>", "<C-w>c", { desc = "Close window" })
 
 -- Prev/next buffer navigation
-map("n", "<leader>>", "<cmd>bn<CR>", { desc = "Go to next buffer" })
-map("n", "<leader><", "<cmd>bp<CR>", { desc = "Go to prev buffer" })
-map("n", "<leader>fn", "<cmd>bn<CR>", { desc = "Go to [N]ext buffer" })
-map("n", "<leader>fp", "<cmd>bn<CR>", { desc = "Go to [P]rev buffer" })
-map("n", "<leader>ff", "<cmd>e #<CR>", { desc = "Go to last buffer" })
+map(all_modes, "<A-y>", "<cmd>bn<CR>", { desc = "Go to next buffer" })
+map(all_modes, "<A-l>", "<cmd>bp<CR>", { desc = "Go to prev buffer" })
+map(all_modes, "<A-Y>", "<cmd>BufferLineMoveNext<CR>", { desc = "Move buffer forward" })
+map(all_modes, "<A-L>", "<cmd>BufferLineMovePrev<CR>", { desc = "Move buffer backward" })
 
 -- Move lines up/down
-map("n", "<C-Down>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
-map("n", "<C-Up>", "<cmd>m .-2<cr>==", { desc = "Move Up" })
-map("i", "<C-Down>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
-map("i", "<C-Up>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
-map("v", "<C-Down>", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
-map("v", "<C-Up>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
+map("n", "<A-Down>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
+map("n", "<A-Up>", "<cmd>m .-2<cr>==", { desc = "Move Up" })
+map("i", "<A-Down>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
+map("i", "<A-Up>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
+map("v", "<A-Down>", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
+map("v", "<A-Up>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
 
 -- General Management
-map("n", "<leader>fs", "<cmd>w<CR>", { desc = "Save current buffer" })
-map("n", "<leader>fS", "<cmd>wa<CR>", { desc = "Save all buffers" })
--- https://stackoverflow.com/questions/1444322/how-can-i-close-a-buffer-without-closing-the-window
-map("n", "<leader>xc", "<cmd>qa<CR>", { desc = "Exit Neovim" })
-map("n", "<leader>xC", "<cmd>qa!<CR>", { desc = "Exit Neovim without saving" })
+map(all_modes, "<C-s>", "<cmd>w<CR>", { desc = "Save current buffer" })
+map(all_modes, "<C-S>", "<cmd>wa<CR>", { desc = "Save all buffers" })
+map(all_modes, "<A-q>", "<cmd>qa<CR>", { desc = "Exit Neovim" })
+map(all_modes, "<A-Q>", "<cmd>qa!<CR>", { desc = "Exit Neovim without saving" })
 
 -- Extra tools
 map("n", "<leader>xil", "<cmd>LspInfo<cr>", { desc = "[L]SP info" })
@@ -67,27 +76,6 @@ map("n", "<leader>xin", "<cmd>NullLsInfo<cr>", { desc = "[N]ullLs info" })
 map("n", "<leader>xit", "<cmd>TSInstallInfo<cr>", { desc = "[T]reesitter info" })
 map("n", "<leader>xic", "<cmd>ConformInfo<cr>", { desc = "[C]onform info" })
 
--- Window management
-map("n", "<leader>wn", "<C-w>h", { desc = "Focus window left" })
-map("n", "<leader>wu", "<C-w>k", { desc = "Focus window up" })
-map("n", "<leader>we", "<C-w>j", { desc = "Focus window down" })
-map("n", "<leader>wi", "<C-w>l", { desc = "Focus window right" })
-map("n", "<leader>ww", "<C-w>p", { desc = "Focus next window" })
-map("n", "<leader>wN", "<C-w>H", { desc = "Move window left" })
-map("n", "<leader>wU", "<C-w>K", { desc = "Move window up" })
-map("n", "<leader>wE", "<C-w>J", { desc = "Move window down" })
-map("n", "<leader>wI", "<C-w>L", { desc = "Move window right" })
-map("n", "<leader>ww", "<C-w>p", { desc = "Focus next window" })
-
-map("n", "<leader>ws", "<C-w>s", { desc = "Split window horizontal" })
-map("n", "<leader>wv", "<C-w>v", { desc = "Split window vertical" })
-map("n", "<leader>w,", "<C-w>s", { desc = "Split window horizontal" })
-map("n", "<leader>w.", "<C-w>v", { desc = "Split window vertical" })
-map("n", "<leader>wm", "<C-w><bar><C-w>_", { desc = "Maximize window" })
-map("n", "<leader>wM", "<C-w>=", { desc = "Restore windows size" })
-map("n", "<leader>wc", "<C-w>c", { desc = "Close window" })
-map("n", "<leader>wd", "<C-w>c", { desc = "Close window" })
-
 -- Terminal management
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
@@ -95,10 +83,9 @@ map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Helper function
 local diagnostic_goto = function(next, severity)
-	local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
 	severity = severity and vim.diagnostic.severity[severity] or nil
 	return function()
-		go({ severity = severity })
+		vim.diagnostic.jump({ count = next and 1 or -1, severity = severity, float = true })
 	end
 end
 
@@ -111,9 +98,7 @@ map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
 -- Terminal mappings
-map("i", "<C-'>", "<cmd>ToggleTerm direction=horizontal name=default<CR>", { desc = "Default terminal" })
-map("n", "<C-'>", "<cmd>ToggleTerm direction=horizontal name=default<CR>", { desc = "Default terminal" })
-map("n", "<leader>tt", "<cmd>ToggleTerm direction=horizontal name=default<CR>", { desc = "Default terminal" })
+map({"n", "i"}, "<A-/>", "<cmd>ToggleTerm direction=horizontal name=default<CR>", { desc = "Default terminal" })
 map("n", "<leader>to", "<cmd>TermSelect<CR>", { desc = "Select terminal" })
 
 -- Persistence mappings
