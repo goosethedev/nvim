@@ -65,6 +65,7 @@ map("v", "<A-Up>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
 -- General Management
 map(all_modes, "<C-s>", "<cmd>w<CR>", { desc = "Save current buffer" })
 map(all_modes, "<C-S>", "<cmd>wa<CR>", { desc = "Save all buffers" })
+map(all_modes, "<A-x>", "<cmd>bd<CR>", { desc = "Close current buffer" })
 map(all_modes, "<A-q>", "<cmd>qa<CR>", { desc = "Exit Neovim" })
 map(all_modes, "<A-Q>", "<cmd>qa!<CR>", { desc = "Exit Neovim without saving" })
 

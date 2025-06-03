@@ -173,7 +173,6 @@ end
 
 return {
 	"nvim-telescope/telescope.nvim",
-	tag = "0.1.6",
 	event = "VimEnter",
 	config = config_fn,
 	opts = options_fn(),

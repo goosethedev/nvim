@@ -8,11 +8,12 @@ local augroup = function(name)
 end
 
 -- Run Telescope file search on startup
-autocmd("VimEnter", {
-	callback = function()
-		require("telescope.builtin").find_files()
-	end,
-})
+-- Doesn't work and also a bad idea
+-- autocmd("VimEnter", {
+-- 	callback = function()
+-- 		require("telescope.builtin").find_files()
+-- 	end,
+-- })
 
 -- Check if we need to reload the file when it changed
 autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
@@ -146,14 +147,15 @@ autocmd({ "FileType" }, {
 })
 
 -- Auto create dir when saving a file, in case some intermediate directory does not exist
-autocmd({ "BufWritePre" }, {
-	desc = "Create intermediate directories if don't exist",
-	group = augroup("auto_create_dir"),
-	callback = function(event)
-		if event.match:match("^%w%w+:[\\/][\\/]") then
-			return
-		end
-		local file = vim.uv.fs_realpath(event.match) or event.match
-		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
-	end,
-})
+-- Doesn't work, don't know what it does in the first place
+-- autocmd({ "BufWritePre" }, {
+-- 	desc = "Create intermediate directories if don't exist",
+-- 	group = augroup("auto_create_dir"),
+-- 	callback = function(event)
+-- 		if event.match:match("^%w%w+:[\\/][\\/]") then
+-- 			return
+-- 		end
+-- 		local file = vim.fs.realpath(event.match) or event.match
+-- 		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+-- 	end,
+-- })

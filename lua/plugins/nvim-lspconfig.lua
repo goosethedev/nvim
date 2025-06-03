@@ -22,6 +22,9 @@ local lsp_servers = {
 				},
 				-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
 				-- diagnostics = { disable = { 'missing-fields' } },
+        diagnostics = {
+          globals = { "vim" }
+        }
 			},
 		},
 	},
@@ -207,13 +210,16 @@ return {
 		},
 
 		-- Neovim Lua namespace completion
-		{
-			"folke/neodev.nvim",
-			opts = {
-				-- Don't overload workspace
-				library = { plugins = false },
-			},
-		},
+    {
+      "folke/lazydev.nvim",
+      ft = "lua", -- only load on lua files
+      opts = {
+        library = {
+          -- Only load the lazyvim library when the `LazyVim` global is found
+          { path = "LazyVim", words = { "LazyVim" } },
+        },
+      },
+    },
 
 		-- Useful status updates for LSP
 		{ "j-hui/fidget.nvim", opts = {} },
